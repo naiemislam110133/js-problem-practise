@@ -16,8 +16,11 @@ addProductsBtn.addEventListener('click', function(){
 
     // create dynamic table jekhane uporeer info gula dekhabe haaa
     const totalPrice = parseInt(itemPrice.value) * parseInt(itemQuantity.value);
-    const tr = document.createElement('tr');
-    const th = document.createElement('th');
+
+    // functional way te duita korbo 
+    const tr = element('tr');
+    const th = element('th');
+    // Not use Function 
     const td1 = document.createElement('td');
     const td2 = document.createElement('td');
     const td3 = document.createElement('td');
@@ -42,6 +45,10 @@ addProductsBtn.addEventListener('click', function(){
 
 });
 
+function element(tagName){
+    return document.createElement(tagName);
+}
+
 function totalCalCulateTotal(){
 
 const subTotal = calCulateSubTotal();
@@ -57,9 +64,6 @@ document.getElementById('grand-total-2').innerText = subTotal + tax;
 } 
 
 function calCulateSubTotal(){
-
-
-    
     const cost = document.getElementsByClassName("item-total");
     // akhane cost ta hosse dynamic vhabe add kora class name tai ati console log a innerHtmlElement ba array akare show kore tai ar every element pauyar jonno for loop usse korte hobe 
     let subTotal = 0;
@@ -69,7 +73,6 @@ function calCulateSubTotal(){
         const price = parseInt(element.innerText);
         subTotal = subTotal + price;
     }
-
     return subTotal;
     
 
