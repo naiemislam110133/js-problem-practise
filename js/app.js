@@ -22,6 +22,8 @@ addProductsBtn.addEventListener('click', function(){
     const td2 = document.createElement('td');
     const td3 = document.createElement('td');
 
+
+    td3.classList.add("item-total");
     th.innerText = itemName.value;
     td1.innerText = itemPrice.value;
     td2.innerText = itemQuantity.value;
@@ -33,4 +35,42 @@ addProductsBtn.addEventListener('click', function(){
     tr.appendChild(td3);
     infoTable.appendChild(tr);
 
+    // itemName.value = '';
+    // itemPrice.value = '';
+    // itemQuantity.value = '';
+    totalCalCulateTotal();
+
 });
+
+function totalCalCulateTotal(){
+
+const subTotal = calCulateSubTotal();
+const subTotalToDisplay = document.getElementById("sub-total");
+subTotalToDisplay.innerText = subTotal;
+
+const tax = subTotal * 0.2 ;
+
+document.getElementById('tax').innerText = tax.toFixed(2);
+document.getElementById('grand-total').innerText = subTotal + tax;
+document.getElementById('grand-total-2').innerText = subTotal + tax;
+
+} 
+
+function calCulateSubTotal(){
+
+
+    
+    const cost = document.getElementsByClassName("item-total");
+    // akhane cost ta hosse dynamic vhabe add kora class name tai ati console log a innerHtmlElement ba array akare show kore tai ar every element pauyar jonno for loop usse korte hobe 
+    let subTotal = 0;
+    for(let i = 0; i < cost.length; i++){
+        const element = cost[i];
+        console.log(element.innerText);
+        const price = parseInt(element.innerText);
+        subTotal = subTotal + price;
+    }
+
+    return subTotal;
+    
+
+}
